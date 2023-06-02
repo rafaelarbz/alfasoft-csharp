@@ -1,7 +1,14 @@
+using Alfasoft.EntityModels;
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<ContactsContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("MariaDBDev"),
+    new MySqlServerVersion(new Version(10, 6, 13))));
 
 var app = builder.Build();
 

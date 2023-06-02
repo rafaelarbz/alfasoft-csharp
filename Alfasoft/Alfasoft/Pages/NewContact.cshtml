@@ -1,0 +1,40 @@
+﻿@page
+@model Alfasoft.Pages.NewContactModel;
+@{
+    ViewData["Title"] = "New Contact";
+}
+<div class="container justify-content-center col-6">
+    <div class="card">
+        <div class="card-header text-center">
+            New Contact
+        </div>
+        <form method="post">
+            <div class="col px-3 mb-2">
+                <div class="mb-2 mt-2">
+                    <label asp-for="ContactsModel.Name" class="small">Name *</label>
+                    <input asp-for="ContactsModel.Name" class="form-control" type="text" placeholder="Contact Name" required>
+                    <span asp-validation-for="ContactsModel.Name" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label asp-for="ContactsModel.Contact" class="small">Contact *</label>
+                    <input asp-for="ContactsModel.Contact" id="number" class="form-control" maxlength="9" type="text" placeholder="9999-9999" required>
+                    <span asp-validation-for="ContactsModel.Contact" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label asp-for="ContactsModel.Email" class="small">E-mail *</label>
+                    <input asp-for="ContactsModel.Email" class="form-control" type="email" placeholder="E-mail" required>
+                    <span asp-validation-for="ContactsModel.Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col px-3 text-center mb-2">
+                <button type="submit" class="btn btn-outline-secondary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.getElementById('number').addEventListener('blur', function (e) {
+        var x = e.target.value.match(/(\d{4})(\d{4})/);
+        e.target.value = x[1] + '-' + x[2];
+    });
+</script>
